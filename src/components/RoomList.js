@@ -5,7 +5,7 @@ class RoomList extends Component{
     super(props);
     this.state = {
       rooms:[],
-      newRoomName: 'hugs'
+      newRoomName: ''
     };
 
     //Store a Firebase reference to the rooms path onto the this keyword. A Firebase reference is an object that you can use to interact with data stored in a specific path. We can use the reference to create, read, update, or delete items at that paths
@@ -39,7 +39,7 @@ class RoomList extends Component{
     //pushes newRoomName to database
     this.roomsRef.push({name: newRoomName});
     //resets variable
-    this.setState({newRoomName: ''})
+    this.setState({newRoomName: ''});
   }
 
 

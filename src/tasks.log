@@ -1,0 +1,8 @@
+MessageList.js: Cannot read property 'target' of undefined
+[] finish setting up database to receive messages?
+[] store active room in App's state, so that the title of the active room changes every time you visit a different room.
+[] RoomList: highlight active room
+[] MessageList: filter results by ID of active room
+[] App: trigger active room by clicking on the name
+
+Associate Messages with a Room

@@ -1,45 +1,60 @@
-import React,  { Component } from 'react'};
-import 
-
+import React, { Component } from 'react';
 
 class MessageList extends Component{
-	constructor(props{
+	constructor(props){
 		super(props);
-		this.state={
+		this.state = {
 			messages: [],
 			newMessage: ''
 		};
-	};
+		this.roomsRef = this.props.firebase.database().ref("rooms");
+
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.hanldeChange = this.handleChange.bind(this);
+	}
+
+	componentDidMount(){
+		this.roomsRef.on('child_added', snapshot =>{
+			const room = snapshot.val();
+			room.key = snapshot.key
+			this.setState({rooms:this.state.rooms.concat( room )});
+
+		});
+	}
 
 	handleChange(event){
-		newMessage: event.state.value;
+		this.setState({newMessage: event.target.value});
 	}
 
 	handleSubmit(event){
-		prevent event default
-		createNewMessage();
+		event.preventDefault();
+		this.createNewMessage(this.state.newRoomName);
 	}
 
-	createNewMessage(){
-		this. .push(newMessage)
+	createNewMessage(newMessage){
+		this.roomsRef.push({message: newMessage}); //newMessage not defined
+		this.setState({newMessage: ''});
 	}
 
-	return(){
-		render(
-			this.state.messages.map(message => 
-			<li className="message" key={message.key}>
-				{message}				
-			</li>
-			);
-				
+	render(){
+		return(
+			<section className="message-list">
+				{this.state.messages.map(message =>
+				<li className="message" key={message.key}> //message not defined
+					{message.body} 														//message not defined
+				</li>
+			 )}
 
-			<form onSubmit={this.handleSubmit()}>
-				<input type="textarea" placeholder="type message..." value={this.state.value} onChange={this.handleChange()}/>
-				<input type="submit" value="Send"/>
-			</form>
+
+
+				<form onSubmit={this.handleSubmit}>
+					<input type="textarea" placeholder="type message..." value={this.state.value} onChange={this.handleChange()}/>
+					<input type="submit" value="Send"/>
+				</form>
+			</section>
 		);
 	}
 
 }
 
-export default Messagelist;
+export default MessageList;
