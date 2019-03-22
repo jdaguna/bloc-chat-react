@@ -17,7 +17,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      {/* we are  calling firebase in the component and passing along the name of the database*/}
+      {/* we are  calling firebase in the RoomList component so we need to pass along the name of the database (firebase) as defined on line 3*/}
         <RoomList firebase={firebase}/>
       </div>
     );
