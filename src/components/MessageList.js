@@ -4,9 +4,13 @@ class MessageList extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
+//allMessages
+//displayMessages
 			messages: [],
 			newMessage: ''
 		};
+
+//change rooms to message
 		this.roomsRef = this.props.firebase.database().ref("rooms");
 
 		this.handleSubmit = this.handleSubmit.bind(this);
