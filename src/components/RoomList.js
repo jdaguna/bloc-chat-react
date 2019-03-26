@@ -19,9 +19,11 @@ class RoomList extends Component{
   componentDidMount(){
     this.roomsRef.on('child_added', snapshot =>{
       console.log(snapshot);
-      const room = snapshot.val();
-      room.key = snapshot.key;
+      const room = snapshot.val(); //contains an object of each room?
+      room.key = snapshot.key; //contains the key to each room
       this.setState({rooms:this.state.rooms.concat( room )});
+      /*console.log(this.state.rooms[0].name);*/
+
 
     });
   }
@@ -41,7 +43,7 @@ class RoomList extends Component{
     //resets variable
     this.setState({newRoomName: ''});
   }
-
+//onClick for roomList, changes state in app to room clicked
 
   render(){
     return(

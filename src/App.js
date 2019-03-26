@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
-import MessageList from './components/MessageList'
+//import MessageList from './components/MessageList'
 
 // Initialize Firebase, information copied from Overiew in Firebase "Add Firebase to your web app"
  var config = {
@@ -29,7 +29,7 @@ class App extends Component {
       <div className="App">
       {/* we are  calling firebase in the RoomList component so we need to pass along the name of the database (firebase) as defined on line 3*/}
         <RoomList firebase={firebase}/>
-        <MessageList firebase={firebase}/>
+  
       </div>
     );
   }
