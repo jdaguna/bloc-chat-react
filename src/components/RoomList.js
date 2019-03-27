@@ -50,8 +50,9 @@ class RoomList extends Component{
       <section className="room-list">
         <h1>Rooms</h1>
         {this.state.rooms.map( room =>
-          <li className="room" key ={room.key}>
+          <li className="room" key ={room.key} onClick={()=>this.props.handleClick(room)}>
             {room.name}
+
           </li>
         )}
 
