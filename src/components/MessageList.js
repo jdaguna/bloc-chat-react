@@ -4,7 +4,7 @@ class MessageList extends Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			messages: [],
+			allMessages: [],
 			displayMessages: [],
 			newMessage: ''
 		};
@@ -19,8 +19,11 @@ class MessageList extends Component{
 		this.messagesRef.on('child_added', snapshot =>{
 			const message = snapshot.val();
 			message.key = snapshot.key
-			this.setState({messages:this.state.messages.concat( message )});
+			this.setState({allMessages:this.state.allMessages.concat( message )});
+// what does this do: in setState " () => {this.showMessages(this.props.activeRoom)});"
+				displayMessages: this.state.allMessages.filter(message => message.roomId === activeRoom.key)});
 		});
+
 	}
 
 	handleChange(event){
@@ -46,7 +49,7 @@ class MessageList extends Component{
 		return(
 			<section className="message-list">
 			<h2>Message List:</h2>
-				{this.state.messages.map(message =>
+				{this.state.allMessages.map(message =>
 				<li className="message" key={message.key}>
 					{message.content}
 				</li>
