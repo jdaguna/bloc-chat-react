@@ -3,6 +3,7 @@ import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
 import MessageList from './components/MessageList'
+
 // Initialize Firebase, information copied from Overiew in Firebase "Add Firebase to your web app"
  var config = {
    apiKey: "AIzaSyBdVefGPvsLxbXJ1R4G2h5Fu9kW9GAFhw0",
@@ -15,12 +16,36 @@ import MessageList from './components/MessageList'
  firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      activeRoom: 'none',
+    };
+  }
+
+handleClick(room){
+  this.setState({activeRoom: room});
+}
+
   render() {
     return (
       <div className="App">
       {/* we are  calling firebase in the RoomList component so we need to pass along the name of the database (firebase) as defined on line 3*/}
-        <RoomList firebase={firebase}/>
-        <MessageList firebase={firebase}/>
+        <RoomList
+        firebase={firebase}
+        activeRoom={this.state.activeRoom}
+        handleClick={this.handleClick.bind(this)}
+        />
+
+        {/*list messages*/}
+        <section>
+          <MessageList
+          firebase={firebase}
+          activeRoom={this.state.activeRoom}
+          />
+        </section>
+
+
       </div>
     );
   }
