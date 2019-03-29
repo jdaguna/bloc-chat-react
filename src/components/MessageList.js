@@ -19,17 +19,13 @@ class MessageList extends Component{
 		this.messagesRef.on('child_added', snapshot =>{
 			const message = snapshot.val();
 			message.key = snapshot.key
-			this.setState({allMessages:this.state.allMessages.concat( message )});
-// what does this do: in setState " () => {this.showMessages(this.props.activeRoom)});"
-				displayMessages: this.state.allMessages.filter(message => message.roomId === activeRoom.key)});
-
 			this.setState(
 				{allMessages: this.state.allMessages.concat( message )},
 				() => {this.updateDisplayList(this.props.activeRoom)}
 			);
 		});
-
 	}
+
 
 	componentDidUpdate(prevProps){ //gets called everytime the component changes..., can be used for animation updates
 		//recieves prev props and state
