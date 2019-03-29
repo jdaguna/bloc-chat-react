@@ -19,16 +19,14 @@ class MessageList extends Component{
 		this.messagesRef.on('child_added', snapshot =>{
 			const message = snapshot.val();
 			message.key = snapshot.key
-<<<<<<< HEAD
 			this.setState({allMessages:this.state.allMessages.concat( message )});
 // what does this do: in setState " () => {this.showMessages(this.props.activeRoom)});"
 				displayMessages: this.state.allMessages.filter(message => message.roomId === activeRoom.key)});
-=======
+
 			this.setState(
 				{allMessages: this.state.allMessages.concat( message )},
 				() => {this.updateDisplayList(this.props.activeRoom)}
 			);
->>>>>>> checkpoint-3-message-list
 		});
 
 	}
@@ -55,10 +53,8 @@ class MessageList extends Component{
 	handleSubmit(event){
 		event.preventDefault();
 		this.createNewMessage(this.state.newMessage);
-<<<<<<< HEAD
-=======
 		document.getElementById("messageForm").value = ""; //clears textField
->>>>>>> checkpoint-3-message-list
+
 	}
 
 	createNewMessage(newMessage){
@@ -74,14 +70,10 @@ class MessageList extends Component{
 	render(){
 		return(
 			<section className="message-list">
-<<<<<<< HEAD
-			<h2>Message List:</h2>
-				{this.state.allMessages.map(message =>
-=======
+
 			<h1>Chat Room: {this.props.activeRoom.name}</h1>
 			<h3>Message List:</h3>
 				{this.state.displayMessages.map(message =>
->>>>>>> checkpoint-3-message-list
 				<li className="message" key={message.key}>
 					{message.content}
 				</li>
@@ -90,11 +82,7 @@ class MessageList extends Component{
 
 
 				<form onSubmit={this.handleSubmit.bind(this)}>
-<<<<<<< HEAD
-					<input type="textarea" placeholder="type message..." value={this.state.value} onChange={this.handleChange.bind(this)}/>
-=======
 					<input id="messageForm" type="textarea" placeholder="Message" value={this.state.value} onChange={this.handleChange.bind(this)}/>
->>>>>>> checkpoint-3-message-list
 					<input type="submit" value="Send"/>
 				</form>
 
