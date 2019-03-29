@@ -20,13 +20,12 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      activeRoom: null,
+      activeRoom: 'none',
     };
   }
 
 handleClick(room){
   this.setState({activeRoom: room});
-  console.log(this.state.activeRoom);
 }
 
   render() {

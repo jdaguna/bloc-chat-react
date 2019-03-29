@@ -35,6 +35,7 @@ class RoomList extends Component{
   handleSubmit(event){
     event.preventDefault();
     this.createChatRoom(this.state.newRoomName);
+    document.getElementById("roomForm").value = "";
   }
 
   createChatRoom(newRoomName){
@@ -59,7 +60,7 @@ class RoomList extends Component{
         {/* Create Rooms using form */}
         <form onSubmit={this.handleSubmit}>
           <h2>Create a new room:</h2>
-          <input type="text" placeholder="Type Name" value={this.state.value} onChange={this.handleChange} />
+          <input id="roomForm" type="text" placeholder="Room" value={this.state.value} onChange={this.handleChange} />
           <input type="submit" value="Create"/>
         </form>
       </section>
