@@ -26,7 +26,6 @@ class MessageList extends Component{
 		});
 	}
 
-
 	componentDidUpdate(prevProps){ //gets called everytime the component changes..., can be used for animation updates
 		//recieves prev props and state
 		if (prevProps.activeRoom !== this.props.activeRoom){
@@ -55,7 +54,7 @@ class MessageList extends Component{
 
 	createNewMessage(newMessage){
 		this.messagesRef.push({
-				username: "<USERNAME HERE>",
+				username: (this.props.user ? this.props.user.displayName : "Guest" ),
 				content: newMessage,
 				sentAt: this.props.firebase.database.ServerValue.TIMESTAMP,
 				roomId: this.props.activeRoom.key
@@ -71,6 +70,7 @@ class MessageList extends Component{
 			<h3>Message List:</h3>
 				{this.state.displayMessages.map(message =>
 				<li className="message" key={message.key}>
+					{message.username}
 					{message.content}
 				</li>
 			 )}
