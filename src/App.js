@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import './App.css';
 import * as firebase from 'firebase';
 import RoomList from './components/RoomList';
-import MessageList from './components/MessageList'
+import MessageList from './components/MessageList';
+import User from './components/User';
 
 // Initialize Firebase, information copied from Overiew in Firebase "Add Firebase to your web app"
  var config = {
@@ -21,8 +22,13 @@ class App extends Component {
     super(props);
     this.state = {
       activeRoom: 'none',
+      user : null
     };
   }
+
+setUser(user){
+  this.setState({user: user});
+}
 
 handleClick(room){
   this.setState({activeRoom: room});
@@ -46,6 +52,11 @@ handleClick(room){
           />
         </section>
 
+        <User
+        firebase={firebase}
+        setUser={this.setUser.bind(this)}
+        user={this.state.user}
+        />
 
       </div>
     );
